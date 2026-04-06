@@ -1,23 +1,15 @@
 import numpy as np
 
-import tensorflow as tf
 import keras
 from keras import layers
 from keras.datasets import mnist
 
+from control_torch_for_gpu import set_gpu_to_model
+
 print("keras vers: ", keras.__version__)
 
-# # 0. Set GPU device to use
-gpus = tf.config.list_physical_devices('GPU')
-if gpus:
-    tf.config.set_logical_device_configuration(
-        gpus[0],
-        [tf.config.LogicalDeviceConfiguration(
-            memory_limit=8192
-        )]
-    )
-    print("It will use 8GB VRAM to train the model")
-
+# #
+set_gpu_to_model()
 
 # # 1. DATA PREPARATION
 # mnist data images has 28x28 dimension
